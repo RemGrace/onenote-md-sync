@@ -1,0 +1,8 @@
+/target
+*.log
+.DS_Store
+test.md
+test.pdf
+test_output.md
+images/
+examples/

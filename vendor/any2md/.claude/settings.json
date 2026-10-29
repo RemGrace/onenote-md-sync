@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Edit",
+      "Write",
+      "Bash(cargo:*)",
+      "Bash(git:*)",
+      "Bash(mkdir:*)",
+      "Bash(rm *.log)",
+      "Bash(which:*)"
+    ]
+  }
+}

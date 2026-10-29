@@ -1,0 +1,26 @@
+/* A history row is one link.
+ *
+ * The anchor in the first cell is stretched over the whole row, so clicking
+ * anywhere in the row opens that run — while the row still carries a real href,
+ * which is the only thing that makes Cmd-click, middle-click and "open in a new
+ * tab" work. A click handler on the row can have the first without the second.
+ */
+.run-row {
+  position: relative;
+}
+
+.run-row-open {
+  cursor: pointer;
+}
+
+.run-row-link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+/* The controls inside a row sit above that overlay. They come after it in the
+ * row, so being positioned at all is enough to put them in front of it. */
+.run-row-control {
+  position: relative;
+}

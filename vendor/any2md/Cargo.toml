@@ -1,0 +1,39 @@
+[package]
+name = "any2md"
+version = "0.1.0"
+edition = "2021"
+description = "CLI utility for converting files to Markdown"
+
+[dependencies]
+clap = { version = "4", features = ["derive"] }
+lopdf = "0.34"
+image = "0.25"
+png = "0.18"
+flate2 = "1"
+base64 = "0.22"
+thiserror = "1"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "fmt"] }
+tracing-appender = "0.2"
+
+# Audio converter (optional — enable with `--features audio`, requires cmake at build time)
+whisper-rs = { version = "0.12", optional = true }
+cpal = { version = "0.15", optional = true }
+symphonia = { version = "0.5", features = ["mp3", "ogg", "flac", "wav", "aac"], optional = true }
+
+# Web converter
+reqwest = { version = "0.12", features = ["blocking", "multipart", "json"] }
+scraper = "0.21"
+
+# Image OCR converter (uses tesseract CLI or cloud API — no system build deps)
+
+# Shared
+dirs = "5"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+[features]
+# Audio transcription is off by default because it pulls in whisper.cpp,
+# which needs `cmake` at build time. Enable with `--features audio`.
+default = []
+audio = ["dep:whisper-rs", "dep:cpal", "dep:symphonia"]

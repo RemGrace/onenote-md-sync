@@ -1,0 +1,38 @@
+services:
+  onenote-md-sync:
+    build: .
+    restart: unless-stopped
+    # host loopback only — remote access goes through the Dokploy/Traefik domain
+    # or an ssh tunnel; locally this is the whole UI
+    ports:
+      - "127.0.0.1:${LOCAL_PORT:-8377}:8377"
+    environment:
+      BIND: 0.0.0.0
+      ADMIN_TOKEN: ${ADMIN_TOKEN:?put ADMIN_TOKEN in the environment}
+      MS_EMAIL: ${MS_EMAIL:-}
+      M365_PASSWORD: ${M365_PASSWORD:-}      # optional; lets a re-login reach the code step
+      SHAREPOINT_SITE: ${SHAREPOINT_SITE:?put SHAREPOINT_SITE in the environment}
+      NOTEBOOK_PATH: ${NOTEBOOK_PATH:?put NOTEBOOK_PATH in the environment}
+      NOTEBOOK_URL: ${NOTEBOOK_URL:?put NOTEBOOK_URL in the environment}
+      RUN_AT: ${RUN_AT:-08:30}
+      TZ: ${TZ:-UTC}
+      VAULT_DIR: /vault
+      VAULT_NOTES_DIR: ${VAULT_NOTES_DIR:-specs}
+      VAULT_REPO: ${VAULT_REPO:?put VAULT_REPO in the environment}
+      VAULT_WEB: ${VAULT_WEB:-}
+      # vault-push deploy key, base64 of the private key file; entrypoint
+      # materialises it — never a PAT in a remote URL
+      DEPLOY_KEY_B64: ${DEPLOY_KEY_B64:-}
+    volumes:
+      - data:/app/data          # session cookies live here — a credential
+      - vault:/vault            # clone of the obsidian vault, created on first boot
+    networks:
+      - dokploy-network
+
+volumes:
+  data:
+  vault:
+
+networks:
+  dokploy-network:
+    external: true              # locally: docker network create dokploy-network

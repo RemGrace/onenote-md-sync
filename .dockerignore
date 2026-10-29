@@ -1,0 +1,9 @@
+.git
+.venv
+data
+secrets
+vendor/any2md/target
+vendor/any2md/.git
+frontend/node_modules
+frontend/dist
+_

@@ -1,0 +1,20 @@
+# Never — this directory holds a live browser session, raw tokens and HAR dumps
+data/
+# The deploy key for the vault push
+secrets/
+
+# Local env
+.venv/
+.env
+*.pyc
+__pycache__/
+.DS_Store
+*.log
+_/
+vendor/any2md/target/
+vendor/any2md/.git.local/
+
+# The frontend's installed deps and its built bundle — the image builds the
+# bundle itself, so a checked-in copy could only ever be stale.
+frontend/node_modules/
+frontend/dist/
