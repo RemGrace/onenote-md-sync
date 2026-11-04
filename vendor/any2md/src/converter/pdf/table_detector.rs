@@ -922,7 +922,7 @@ mod tests {
 
     #[test]
     fn test_is_cell_noise_sharepoint_url() {
-        let url = "https://contoso.sharepoint.com/sites/Team/_layouts/15/Doc.aspx?sourcedoc={00000000-0000-4000-8000-000000000000}&action=edit&wd=target%28Notes.one";
+        let url = "https://contoso.sharepoint.com/sites/Team/_layouts/15/Doc.aspx?sourcedoc={00000000-0000-4000-8000-000000000000}&action=edit&wd=target%28Notes.one%7C00000000-0000-4000-8000-000000000000%2FPage%7C00000000%29";
         assert!(TableDetector::is_cell_noise(url));
         assert!(!TableDetector::is_cell_noise("https://example.com"));
     }
