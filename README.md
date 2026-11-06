@@ -5,6 +5,10 @@ notes (for example an Obsidian vault). Playwright drives the way in, `any2md` do
 a coverage gate decides whether the result is good enough to commit. A small admin UI runs it on
 a schedule and handles the Microsoft sign-in.
 
+![Admin UI: run a sync, follow its progress, open the vault commit](docs/demo.gif)
+
+*The admin UI with demo data: no real notebook, account or vault.*
+
 ## Pipeline
 
 ```
